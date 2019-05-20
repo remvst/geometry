@@ -1,5 +1,5 @@
 {
-  "name": "geometry",
+  "name": "@remvst/geometry",
   "version": "1.0.0",
   "description": "Very basic geometric helpers",
   "main": "index.js",
