@@ -60,22 +60,22 @@ export default class Rectangle {
     centerAround(
         x: number,
         y: number,
-        width: number | null = null,
-        height: number | null = null
+        width: number = this.width,
+        height: number = this.height
     ) {
         this.update(
-            x - this.width / 2,
-            y - this.height / 2,
-            width || this.width,
-            height || this.height
+            x - width / 2,
+            y - height / 2,
+            width,
+            height
         );
     }
 
     update(
         x: number,
         y: number,
-        width: number,
-        height: number
+        width: number = this.width,
+        height: number = this.height
     ) {
         this.x = x;
         this.y = y;
