@@ -1,11 +1,22 @@
 {
-  "name": "@remvst/geometry",
-  "version": "1.0.0",
-  "description": "Very basic geometric helpers",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Rémi Vansteelandt",
-  "license": "UNLICENSED"
+    "name": "@remvst/geometry",
+    "version": "2.0.1",
+    "description": "Very basic geometric helpers",
+    "main": "lib/index.js",
+    "scripts": {
+        "test": "ts-node node_modules/jasmine/bin/jasmine --config=spec/support/jasmine.json",
+        "coverage": "nyc -r lcov -e .ts -x \"spec/**/*.spec.ts\" npm run test",
+        "build": "tsc"
+    },
+    "author": "Rémi Vansteelandt",
+    "license": "UNLICENSED",
+    "devDependencies": {
+        "@types/jasmine": "^3.6.2",
+        "@types/node": "^14.14.16",
+        "jasmine": "^3.4.0",
+        "typescript": "^4.1.3",
+        "jasmine-ts": "^0.3.0",
+        "nyc": "^15.1.0",
+        "ts-node": "^9.1.1"
+    }
 }
