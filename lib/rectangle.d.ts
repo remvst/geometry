@@ -10,8 +10,8 @@ export default class Rectangle {
     get sides(): Segment[];
     get maxX(): number;
     get maxY(): number;
-    centerAround(x: number, y: number, width?: number | null, height?: number | null): void;
-    update(x: number, y: number, width: number, height: number): void;
+    centerAround(x: number, y: number, width?: number, height?: number): void;
+    update(x: number, y: number, width?: number, height?: number): void;
     updateSidesIfNecessary(): void;
     intersects(otherRectangle: Rectangle): boolean;
 }
