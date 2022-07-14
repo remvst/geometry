@@ -12,13 +12,13 @@ function isBetween(
 
 export default class Rectangle {
 
-    private _sides: Segment[];
-    private _dirtySides: boolean;
+    private readonly _sides: Segment[] = [];
+    private dirtySides: boolean = true;
 
-    x: number;
-    y: number;
-    width: number;
-    height: number;
+    x: number = 0;
+    y: number = 0;
+    width: number = 0;
+    height: number = 0;
 
     constructor(
         x: number,
@@ -26,27 +26,20 @@ export default class Rectangle {
         width: number,
         height: number
     ) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-
-        this._sides = [];
-        for (let i = 0 ; i < 4 ; i++) {
-            this._sides.push(new Segment(
-                {'x': 0, 'y': 0},
-                {'x': 0, 'y': 0}
-            ));
-        }
-
-        this._dirtySides = true;
-
         this.update(x, y, width, height);
     }
 
     get sides(): Segment[] {
         this.updateSidesIfNecessary();
         return this._sides;
+    }
+
+    get minX(): number {
+        return this.x;
+    }
+
+    get minY(): number {
+        return this.y;
     }
 
     get maxX(): number {
@@ -77,20 +70,37 @@ export default class Rectangle {
         width: number = this.width,
         height: number = this.height
     ) {
+        if (width < 0) {
+            x += width;
+            width *= -1;
+        }
+        if (height < 0) {
+            y += height;
+            height *= -1;
+        }
+
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
-
-        this._dirtySides = true;
+        this.dirtySides = true;
     }
 
     updateSidesIfNecessary() {
-        if (!this._dirtySides) {
+        if (!this.dirtySides) {
             return;
         }
 
-        this._dirtySides = true;
+        this.dirtySides = false;
+
+        if (this._sides.length === 0) {
+            for (let i = 0 ; i < 4 ; i++) {
+                this._sides.push(new Segment(
+                    {'x': 0, 'y': 0},
+                    {'x': 0, 'y': 0}
+                ));
+            }
+        }
 
         this._sides[0].p1.x = this.x;
         this._sides[0].p1.y = this.y;

@@ -9,6 +9,31 @@ describe('a rectangle', () => {
         expect(rectangle.y).toBe(2);
         expect(rectangle.width).toBe(3);
         expect(rectangle.height).toBe(4);
+
+        expect(rectangle.x).toBe(rectangle.minX);
+        expect(rectangle.y).toBe(rectangle.minY);
+        expect(rectangle.maxX).toBe(rectangle.x + rectangle.width);
+        expect(rectangle.maxY).toBe(rectangle.y + rectangle.height);
+    });
+
+    it('can be updated with a negative width', () => {
+        const rectangle = new Rectangle(0, 0, 1, 1);
+        rectangle.update(1, 2, -3, 4);
+
+        expect(rectangle.x).toBe(-2);
+        expect(rectangle.y).toBe(2);
+        expect(rectangle.width).toBe(3);
+        expect(rectangle.height).toBe(4);
+    });
+
+    it('can be updated with a negative height', () => {
+        const rectangle = new Rectangle(0, 0, 1, 1);
+        rectangle.update(1, 2, 3, -4);
+
+        expect(rectangle.x).toBe(1);
+        expect(rectangle.y).toBe(-2);
+        expect(rectangle.width).toBe(3);
+        expect(rectangle.height).toBe(4);
     });
 
     it('can be updated without a width and height', () => {
