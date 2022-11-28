@@ -21,10 +21,10 @@ export default class Rectangle {
     height: number = 0;
 
     constructor(
-        x: number,
-        y: number,
-        width: number,
-        height: number
+        x: number = 0,
+        y: number = 0,
+        width: number = 0,
+        height: number = 0,
     ) {
         this.update(x, y, width, height);
     }
