@@ -93,6 +93,19 @@ export default class Rectangle {
         this.dirtySides = true;
     }
 
+    setBounds(minX: number, minY: number, maxX: number, maxY: number) {
+        this.update(minX, minY, maxX - minX, maxY - minY);
+    }
+
+    combineBounds(other: Rectangle) {
+        this.setBounds(
+            Math.min(this.minX, other.minX),
+            Math.min(this.minY, other.minY),
+            Math.max(this.maxX, other.maxX),
+            Math.max(this.maxY, other.maxY),
+        );
+    }
+
     updateSidesIfNecessary() {
         if (!this.dirtySides) {
             return;

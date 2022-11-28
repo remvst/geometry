@@ -67,4 +67,26 @@ describe('a rectangle', () => {
         expect(rectangle.x).toBe(85);
         expect(rectangle.y).toBe(690);
     });
+
+    it('can have its bounds set', () => {
+        const rectangle = new Rectangle();
+
+        rectangle.setBounds(10, 20, 35, 50);
+
+        expect(rectangle.x).toBe(10);
+        expect(rectangle.y).toBe(20);
+        expect(rectangle.width).toBe(25);
+        expect(rectangle.height).toBe(30);
+    });
+
+    it('can combine its bounds with another rectangle', () => {
+        const rectangle = new Rectangle(10, 25, 50, 60);
+
+        rectangle.combineBounds(new Rectangle(0, 0, 100, 200));
+
+        expect(rectangle.x).toBe(0);
+        expect(rectangle.y).toBe(0);
+        expect(rectangle.width).toBe(100);
+        expect(rectangle.height).toBe(200);
+    });
 });
