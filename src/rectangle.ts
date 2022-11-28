@@ -1,5 +1,4 @@
-'use strict';
-
+import { Point } from './point';
 import Segment from './segment';
 
 function isBetween(
@@ -48,6 +47,14 @@ export default class Rectangle {
 
     get maxY(): number {
         return this.y + this.height;
+    }
+
+    get midX(): number {
+        return this.x + this.width / 2;
+    }
+
+    get midY(): number {
+        return this.y + this.height / 2;
     }
 
     centerAround(
@@ -137,4 +144,7 @@ export default class Rectangle {
         );
     }
 
+    containsPoint(point: Point) {
+        return isBetween(this.x, point.x, this.maxX) && isBetween(this.y, point.y, this.maxY);
+    }
 }
