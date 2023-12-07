@@ -3,7 +3,7 @@ export interface Vector2Like {
     y: number;
 }
 
-export default class Vector2 implements Vector2Like {
+export class Vector2 implements Vector2Like {
     constructor(public x: number = 0, public y: number = 0) {
     }
 }

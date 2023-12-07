@@ -1,4 +1,4 @@
-import Vector2Like from "./vector2";
+import { Vector2Like } from "./vector2";
 
 export function between(a: number, b: number, c: number) {
     if (b < a) return a;

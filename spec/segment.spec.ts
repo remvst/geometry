@@ -1,5 +1,3 @@
-'use strict';
-
 import { Segment } from '../src/index';
 
 describe('a segment', () => {

@@ -1,4 +1,4 @@
-import Rectangle from './rectangle';
+import { Rectangle } from './rectangle';
 import { Vector2Like } from './vector2';
 
 function lineIntersectsLine(
@@ -26,7 +26,7 @@ function lineIntersectsLine(
     return true;
 }
 
-export default class Segment {
+export class Segment {
 
     constructor(
         readonly p1: Vector2Like, 

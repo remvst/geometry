@@ -1,5 +1,3 @@
-'use strict';
-
 import { Vector2, between, distance, isBetween } from '../src/index';
 
 describe('math', () => {

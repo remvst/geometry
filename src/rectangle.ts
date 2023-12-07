@@ -1,8 +1,8 @@
 import { isBetween } from './math';
-import Segment from './segment';
+import { Segment } from './segment';
 import { Vector2Like } from './vector2';
 
-export default class Rectangle {
+export class Rectangle {
 
     private readonly _sides: Segment[] = [];
     private dirtySides: boolean = true;
