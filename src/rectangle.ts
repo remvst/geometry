@@ -1,29 +1,17 @@
-import { Point } from './point';
+import { isBetween } from './math';
 import Segment from './segment';
-
-function isBetween(
-    a: number,
-    b: number,
-    c: number
-): boolean {
-    return a <= b && b <= c || a >= b && b >= c;
-}
+import { Vector2Like } from './vector2';
 
 export default class Rectangle {
 
     private readonly _sides: Segment[] = [];
     private dirtySides: boolean = true;
 
-    x: number = 0;
-    y: number = 0;
-    width: number = 0;
-    height: number = 0;
-
     constructor(
-        x: number = 0,
-        y: number = 0,
-        width: number = 0,
-        height: number = 0,
+        public x: number = 0,
+        public y: number = 0,
+        public width: number = 0,
+        public height: number = 0,
     ) {
         this.update(x, y, width, height);
     }
@@ -157,7 +145,8 @@ export default class Rectangle {
         );
     }
 
-    containsPoint(point: Point) {
-        return isBetween(this.x, point.x, this.maxX) && isBetween(this.y, point.y, this.maxY);
+    containsPoint(point: Vector2Like) {
+        return isBetween(this.x, point.x, this.maxX) && 
+            isBetween(this.y, point.y, this.maxY);
     }
 }

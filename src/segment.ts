@@ -1,11 +1,11 @@
-import { Point } from './point';
 import Rectangle from './rectangle';
+import { Vector2Like } from './vector2';
 
 function lineIntersectsLine(
-    l1p1: Point,
-    l1p2: Point,
-    l2p1: Point,
-    l2p2: Point
+    l1p1: Vector2Like,
+    l1p2: Vector2Like,
+    l2p1: Vector2Like,
+    l2p2: Vector2Like
 ): boolean {
     let q = (l1p1.y - l2p1.y) * (l2p2.x - l2p1.x) - (l1p1.x - l2p1.x) * (l2p2.y - l2p1.y);
     const d = (l1p2.x - l1p1.x) * (l2p2.y - l2p1.y) - (l1p2.y - l1p1.y) * (l2p2.x - l2p1.x);
@@ -28,12 +28,10 @@ function lineIntersectsLine(
 
 export default class Segment {
 
-    readonly p1: Point;
-    readonly p2: Point;
-
-    constructor(p1: Point, p2: Point) {
-        this.p1 = p1;
-        this.p2 = p2;
+    constructor(
+        readonly p1: Vector2Like, 
+        readonly p2: Vector2Like,
+    ) {
     }
 
     angle(): number {
