@@ -1,7 +1,7 @@
-import { Rectangle } from '../src/index';
+import { Rectangle } from "../src/index";
 
-describe('a rectangle', () => {
-    it('can be updated', () => {
+describe("a rectangle", () => {
+    it("can be updated", () => {
         const rectangle = new Rectangle(0, 0, 1, 1);
         rectangle.update(1, 2, 3, 4);
 
@@ -16,7 +16,7 @@ describe('a rectangle', () => {
         expect(rectangle.maxY).toBe(rectangle.y + rectangle.height);
     });
 
-    it('can be updated with a negative width', () => {
+    it("can be updated with a negative width", () => {
         const rectangle = new Rectangle(0, 0, 1, 1);
         rectangle.update(1, 2, -3, 4);
 
@@ -26,7 +26,7 @@ describe('a rectangle', () => {
         expect(rectangle.height).toBe(4);
     });
 
-    it('can be updated with a negative height', () => {
+    it("can be updated with a negative height", () => {
         const rectangle = new Rectangle(0, 0, 1, 1);
         rectangle.update(1, 2, 3, -4);
 
@@ -36,7 +36,7 @@ describe('a rectangle', () => {
         expect(rectangle.height).toBe(4);
     });
 
-    it('can be updated without a width and height', () => {
+    it("can be updated without a width and height", () => {
         const rectangle = new Rectangle(0, 0, 34, 56);
         rectangle.update(1, 2);
 
@@ -46,7 +46,7 @@ describe('a rectangle', () => {
         expect(rectangle.height).toBe(56);
     });
 
-    it('can be centered around a point', () => {
+    it("can be centered around a point", () => {
         const rectangle = new Rectangle(0, 0, 1, 1);
 
         rectangle.centerAround(20, 60, 10, 50);
@@ -57,7 +57,7 @@ describe('a rectangle', () => {
         expect(rectangle.y).toBe(35);
     });
 
-    it('can be centered around a point without a width and height', () => {
+    it("can be centered around a point without a width and height", () => {
         const rectangle = new Rectangle(0, 0, 30, 20);
 
         rectangle.centerAround(100, 700);
@@ -68,7 +68,7 @@ describe('a rectangle', () => {
         expect(rectangle.y).toBe(690);
     });
 
-    it('can have its bounds set', () => {
+    it("can have its bounds set", () => {
         const rectangle = new Rectangle();
 
         rectangle.setBounds(10, 20, 35, 50);
@@ -79,7 +79,7 @@ describe('a rectangle', () => {
         expect(rectangle.height).toBe(30);
     });
 
-    it('can combine its bounds with another rectangle', () => {
+    it("can combine its bounds with another rectangle", () => {
         const rectangle = new Rectangle(10, 25, 50, 60);
 
         rectangle.combineBounds(new Rectangle(0, 0, 100, 200));
@@ -90,7 +90,7 @@ describe('a rectangle', () => {
         expect(rectangle.height).toBe(200);
     });
 
-    it('can be cloned', () => {
+    it("can be cloned", () => {
         const rectangle = new Rectangle(10, 20, 30, 40);
         const copy = rectangle.clone();
 
@@ -101,7 +101,7 @@ describe('a rectangle', () => {
         expect(copy.height).toBe(rectangle.height);
     });
 
-    it('can be copied into another rectangle', () => {
+    it("can be copied into another rectangle", () => {
         const original = new Rectangle(10, 20, 30, 40);
         const copy = new Rectangle();
 
@@ -119,7 +119,7 @@ describe('a rectangle', () => {
         expect(copy.height).toBe(original.height);
     });
 
-    it('can be padded', () => {
+    it("can be padded", () => {
         const original = new Rectangle(10, 20, 30, 40);
         const copy = original.clone();
 
