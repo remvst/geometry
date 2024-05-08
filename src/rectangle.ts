@@ -146,7 +146,24 @@ export class Rectangle {
     }
 
     containsPoint(point: Vector2Like) {
-        return isBetween(this.x, point.x, this.maxX) && 
+        return isBetween(this.x, point.x, this.maxX) &&
             isBetween(this.y, point.y, this.maxY);
+    }
+
+    clone(): Rectangle {
+        return new Rectangle(this.x, this.y, this.width, this.height);
+    }
+
+    copy(other: Rectangle) {
+        this.update(other.x, other.y, other.width, other.height);
+    }
+
+    pad(paddingX: number, paddingY: number) {
+        this.update(
+            this.x - paddingX,
+            this.y - paddingY,
+            this.width + paddingX * 2,
+            this.height + paddingY * 2
+        );
     }
 }

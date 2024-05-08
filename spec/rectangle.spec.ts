@@ -89,4 +89,45 @@ describe('a rectangle', () => {
         expect(rectangle.width).toBe(100);
         expect(rectangle.height).toBe(200);
     });
+
+    it('can be cloned', () => {
+        const rectangle = new Rectangle(10, 20, 30, 40);
+        const copy = rectangle.clone();
+
+        expect(copy).not.toBe(rectangle);
+        expect(copy.x).toBe(rectangle.x);
+        expect(copy.y).toBe(rectangle.y);
+        expect(copy.width).toBe(rectangle.width);
+        expect(copy.height).toBe(rectangle.height);
+    });
+
+    it('can be copied into another rectangle', () => {
+        const original = new Rectangle(10, 20, 30, 40);
+        const copy = new Rectangle();
+
+        copy.copy(original);
+
+        expect(original.x).toBe(10);
+        expect(original.y).toBe(20);
+        expect(original.width).toBe(30);
+        expect(original.height).toBe(40);
+
+        expect(copy).not.toBe(original);
+        expect(copy.x).toBe(original.x);
+        expect(copy.y).toBe(original.y);
+        expect(copy.width).toBe(original.width);
+        expect(copy.height).toBe(original.height);
+    });
+
+    it('can be padded', () => {
+        const original = new Rectangle(10, 20, 30, 40);
+        const copy = original.clone();
+
+        copy.pad(10, 20);
+
+        expect(copy.midX).toBe(original.midX);
+        expect(copy.midY).toBe(original.midY);
+        expect(copy.width).toBe(original.width + 20);
+        expect(copy.height).toBe(original.height + 40);
+    });
 });
