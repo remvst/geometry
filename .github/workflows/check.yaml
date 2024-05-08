@@ -1,4 +1,4 @@
-name: Run tests
+name: Check tests
 on:
     push:
         branches:
@@ -7,7 +7,7 @@ on:
         branches:
             - "**"
 jobs:
-    deploy-web:
+    check:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/setup-node@v3
