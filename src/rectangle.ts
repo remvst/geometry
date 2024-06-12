@@ -1,6 +1,6 @@
 import { isBetween } from "./math";
 import { Segment } from "./segment";
-import { Vector2Like } from "./vector2";
+import { Vector2, Vector2Like } from "./vector2";
 
 export class Rectangle {
     private readonly _sides: Segment[] = [];
@@ -49,8 +49,8 @@ export class Rectangle {
         y: number,
         width: number = this.width,
         height: number = this.height,
-    ) {
-        this.update(x - width / 2, y - height / 2, width, height);
+    ): this {
+        return this.update(x - width / 2, y - height / 2, width, height);
     }
 
     update(
@@ -58,7 +58,7 @@ export class Rectangle {
         y: number,
         width: number = this.width,
         height: number = this.height,
-    ) {
+    ): this {
         if (width < 0) {
             x += width;
             width *= -1;
@@ -73,14 +73,16 @@ export class Rectangle {
         this.width = width;
         this.height = height;
         this.dirtySides = true;
+
+        return this;
     }
 
-    setBounds(minX: number, minY: number, maxX: number, maxY: number) {
-        this.update(minX, minY, maxX - minX, maxY - minY);
+    setBounds(minX: number, minY: number, maxX: number, maxY: number): this {
+        return this.update(minX, minY, maxX - minX, maxY - minY);
     }
 
-    combineBounds(other: Rectangle) {
-        this.setBounds(
+    combineBounds(other: Rectangle): this {
+        return this.setBounds(
             Math.min(this.minX, other.minX),
             Math.min(this.minY, other.minY),
             Math.max(this.maxX, other.maxX),
@@ -88,7 +90,7 @@ export class Rectangle {
         );
     }
 
-    updateSidesIfNecessary() {
+    private updateSidesIfNecessary() {
         if (!this.dirtySides) {
             return;
         }
@@ -97,7 +99,7 @@ export class Rectangle {
 
         if (this._sides.length === 0) {
             for (let i = 0; i < 4; i++) {
-                this._sides.push(new Segment({ x: 0, y: 0 }, { x: 0, y: 0 }));
+                this._sides.push(new Segment(new Vector2(), new Vector2()));
             }
         }
 
@@ -122,7 +124,7 @@ export class Rectangle {
         this._sides[3].p2.y = this.y + this.height;
     }
 
-    intersects(otherRectangle: Rectangle) {
+    intersects(otherRectangle: Rectangle): boolean {
         return (
             (isBetween(this.x, otherRectangle.x, this.maxX) ||
                 isBetween(this.x, otherRectangle.maxX, this.maxX) ||
@@ -135,7 +137,7 @@ export class Rectangle {
         );
     }
 
-    containsPoint(point: Vector2Like) {
+    containsPoint(point: Vector2Like): boolean {
         return (
             isBetween(this.x, point.x, this.maxX) &&
             isBetween(this.y, point.y, this.maxY)
@@ -146,16 +148,25 @@ export class Rectangle {
         return new Rectangle(this.x, this.y, this.width, this.height);
     }
 
-    copy(other: Rectangle) {
-        this.update(other.x, other.y, other.width, other.height);
+    copy(other: Rectangle): this {
+        return this.update(other.x, other.y, other.width, other.height);
     }
 
-    pad(paddingX: number, paddingY: number) {
+    pad(paddingX: number, paddingY: number): this {
         this.update(
             this.x - paddingX,
             this.y - paddingY,
             this.width + paddingX * 2,
             this.height + paddingY * 2,
         );
+        return this;
+    }
+
+    grow(x: number, y: number): this {
+        return this.pad(x, y);
+    }
+
+    shrink(x: number, y: number): this {
+        return this.pad(-x, -y);
     }
 }
