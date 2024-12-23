@@ -29,7 +29,7 @@ function lineIntersectsLine(
 export class Segment {
 
     constructor(
-        readonly p1: Vector2Like, 
+        readonly p1: Vector2Like,
         readonly p2: Vector2Like,
     ) {
     }
