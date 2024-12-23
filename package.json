@@ -1,6 +1,6 @@
 {
     "name": "@remvst/geometry",
-    "version": "2.6.0",
+    "version": "2.7.0",
     "description": "Very basic geometric helpers",
     "main": "lib/index.js",
     "scripts": {
