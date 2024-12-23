@@ -1,9 +1,8 @@
-import { isBetween } from './math';
-import { Segment } from './segment';
-import { Vector2Like } from './vector2';
+import { isBetween } from "./math";
+import { Segment } from "./segment";
+import { Vector2Like } from "./vector2";
 
 export class Rectangle {
-
     private readonly _sides: Segment[] = [];
     private dirtySides: boolean = true;
 
@@ -49,21 +48,16 @@ export class Rectangle {
         x: number,
         y: number,
         width: number = this.width,
-        height: number = this.height
+        height: number = this.height,
     ) {
-        this.update(
-            x - width / 2,
-            y - height / 2,
-            width,
-            height
-        );
+        this.update(x - width / 2, y - height / 2, width, height);
     }
 
     update(
         x: number,
         y: number,
         width: number = this.width,
-        height: number = this.height
+        height: number = this.height,
     ) {
         if (width < 0) {
             x += width;
@@ -102,11 +96,8 @@ export class Rectangle {
         this.dirtySides = false;
 
         if (this._sides.length === 0) {
-            for (let i = 0 ; i < 4 ; i++) {
-                this._sides.push(new Segment(
-                    {'x': 0, 'y': 0},
-                    {'x': 0, 'y': 0}
-                ));
+            for (let i = 0; i < 4; i++) {
+                this._sides.push(new Segment({ x: 0, y: 0 }, { x: 0, y: 0 }));
             }
         }
 
@@ -133,20 +124,21 @@ export class Rectangle {
 
     intersects(otherRectangle: Rectangle) {
         return (
-            isBetween(this.x, otherRectangle.x, this.maxX) ||
-            isBetween(this.x, otherRectangle.maxX, this.maxX) ||
-            isBetween(otherRectangle.x, this.x, otherRectangle.maxX) ||
-            isBetween(otherRectangle.x, this.maxX, otherRectangle.maxX)
-        ) && (
-            isBetween(this.y, otherRectangle.y, this.maxY) ||
-            isBetween(this.y, otherRectangle.maxY, this.maxY) ||
-            isBetween(otherRectangle.y, this.y, otherRectangle.maxY) ||
-            isBetween(otherRectangle.y, this.maxY, otherRectangle.maxY)
+            (isBetween(this.x, otherRectangle.x, this.maxX) ||
+                isBetween(this.x, otherRectangle.maxX, this.maxX) ||
+                isBetween(otherRectangle.x, this.x, otherRectangle.maxX) ||
+                isBetween(otherRectangle.x, this.maxX, otherRectangle.maxX)) &&
+            (isBetween(this.y, otherRectangle.y, this.maxY) ||
+                isBetween(this.y, otherRectangle.maxY, this.maxY) ||
+                isBetween(otherRectangle.y, this.y, otherRectangle.maxY) ||
+                isBetween(otherRectangle.y, this.maxY, otherRectangle.maxY))
         );
     }
 
     containsPoint(point: Vector2Like) {
-        return isBetween(this.x, point.x, this.maxX) && 
-            isBetween(this.y, point.y, this.maxY);
+        return (
+            isBetween(this.x, point.x, this.maxX) &&
+            isBetween(this.y, point.y, this.maxY)
+        );
     }
 }

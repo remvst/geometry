@@ -4,8 +4,10 @@ export interface Vector2Like {
 }
 
 export class Vector2 implements Vector2Like {
-    constructor(public x: number = 0, public y: number = 0) {
-    }
+    constructor(
+        public x: number = 0,
+        public y: number = 0,
+    ) {}
 }
 
 export function copyVec2(vec2: Vector2Like): Vector2Like {
